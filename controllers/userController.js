@@ -54,7 +54,7 @@ module.exports = {
                 //runValidators will make Mongoose check for compliance with schema
                 //new makes application return the modified version (Default will be original)
             )
-                .select('-__v');;
+                .select('-__v');
 
             if (!user) {
                 console.log('UPDATING USER NON-EXISTENT');
@@ -86,7 +86,7 @@ module.exports = {
                 );
             }
 
-            res.json({ message: 'Student successfully deleted' });
+            res.json({ message: 'User successfully deleted' });
         } catch (error) {
             console.log('DELETING USER ERROR');
             console.log(error);
