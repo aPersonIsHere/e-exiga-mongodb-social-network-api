@@ -111,16 +111,10 @@ module.exports = {
     },
     async deleteReaction (req, res) {
         try {
-            if (!req.body.reactionId) {
-                console.log('DELETING REACTION NON-EXISTENT (USE REQUEST BODY FOR DELETING REACTION BY ITS ID)');
-                return res.status(404).json({ message: 'No reactionId specified in DELETE request body'});
-            }
-            removeId = req.body.reactionId;
-
             console.log('DELETING REACTION');
             const reaction = await Thought.findOneAndUpdate(
                 { _id: req.params.thoughtId },
-                { $pull: { reactions: { reactionId: removeId } } },
+                { $pull: { reactions: { reactionId: req.params.reactionId } } },
                 { runValidators: true, new: true }
             )
                 .select('-__v');
